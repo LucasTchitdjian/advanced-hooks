@@ -1,122 +1,112 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
-
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-  },
-  {
-    text: "Examples",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
-    description:
-      "A collection of websites ranging from very basic to complex/complete that illustrate how to accomplish specific tasks within your Gatsby sites.",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Learn how to add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-  },
-]
-
-const samplePageLinks = [
-  {
-    text: "Page 2",
-    url: "page-2",
-    badge: false,
-    description:
-      "A simple example of linking to another page within a Gatsby site",
-  },
-  { text: "TypeScript", url: "using-typescript" },
-  { text: "Server Side Rendering", url: "using-ssr" },
-  { text: "Deferred Static Generation", url: "using-dsg" },
-]
-
-const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
-  {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
-  },
-  {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
-  },
-  {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
-  },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
-]
-
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
+import styled from "styled-components"
+import PurchaseButton from "../components/buttons/PurchaseButton"
+import CourseCard from "../components/cards/CourseCard"
 
 const IndexPage = () => (
-  <Layout>
-    <Seo title="Home" />
-    <div className={styles.textCenter}>
-      <StaticImage
-        src="../images/example.png"
-        loading="eager"
-        width={64}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-      />
-      <h1>
-        Welcome to <b>Gatsby!</b>
-      </h1>
-      <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
-        {samplePageLinks.map((link, i) => (
-          <React.Fragment key={link.url}>
-            <Link to={link.url}>{link.text}</Link>
-            {i !== samplePageLinks.length - 1 && <> · </>}
-          </React.Fragment>
-        ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
-      </p>
-    </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
-          <a
-            className={styles.listItemLink}
-            href={`${link.url}${utmParameters}`}
-          >
-            {link.text} ↗
-          </a>
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
-    {moreLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <a href={`${link.url}${utmParameters}`}>{link.text}</a>
-        {i !== moreLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
-  </Layout>
+  <Wrapper>
+    <HeroWrapper>
+      <CourseCard />
+      <TextWrapper>
+        <Logo src="/images/logos/react-logo.svg" alt="icon" />
+        <Title>Build a web app with React Hooks</Title>
+        <Caption>20 sections - 3 hours of videos</Caption>
+        <Description>
+          Learn how we build the new design code site with React Hooks
+        </Description>
+        <AuthorWrapper>
+          <AuthorImage src="/images/avatars/Meng.png" alt="author" />
+          <Caption>Taught by Meng To</Caption>
+        </AuthorWrapper>
+        <PurchaseButton />
+        <SmallText>
+          Purchase includes access to 30 courses. Over 80 hours of content,
+          includng 12 hours for SwiftUI, IOS13, IOS14.
+        </SmallText>
+      </TextWrapper>
+    </HeroWrapper>
+  </Wrapper>
 )
 
 export default IndexPage
+
+const Wrapper = styled.div`
+  background: linear-gradient(200.44deg, #4316db 13.57%, #9076e7 98.38%);
+`
+
+const TextWrapper = styled.div`
+  position: relative;
+  display: grid;
+  gap: 20px;
+
+  @media (max-width: 780px) {
+    justify-items: center;
+    text-align: center;
+  }
+`
+
+const AuthorWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`
+
+const HeroWrapper = styled.div`
+  display: grid;
+  max-width: 1234px;
+  grid-template-columns: 360px auto;
+  gap: 60px;
+  padding: 220px 20px 0px;
+  justify-content: center;
+  margin: 0 auto;
+
+  @media (max-width: 780px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+`
+
+const Logo = styled.img`
+  width: 60px;
+  height: 60px;
+`
+
+const Title = styled.h1`
+  max-width: 550px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 60px;
+  line-height: 72px;
+  color: #ffffff;
+  mix-blend-mode: normal;
+  text-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+`
+
+const Caption = styled.p`
+  font-size: 15px;
+  font-style: normal;
+  line-height: 130%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+`
+
+const Description = styled.p`
+  max-width: 400px;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 140%;
+  color: #ffffff;
+`
+
+const AuthorImage = styled.img`
+  width: 32px;
+  height: 32px;
+`
+
+const SmallText = styled.p`
+  max-width: 280px;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 130%;
+  color: rgba(255, 255, 255, 0.7);
+`
