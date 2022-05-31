@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import SectionRow from "../rows/SectionRow"
+import { sections } from "../../data/sectionData"
 
 function GridSection() {
   return (
@@ -11,9 +12,15 @@ function GridSection() {
         so that you can easilty follow in a cohesive way.
       </Description>
       <Grid>
-        <SectionRow />
-        <SectionRow />
-        <SectionRow />
+        {sections.map((section, index) => (
+          <SectionRow
+            key={index}
+            index={index + 1}
+            title={section.title}
+            description={section.description}
+            timestamp={section.duration}
+          />
+        ))}
       </Grid>
     </Wrapper>
   )
@@ -48,6 +55,9 @@ const Description = styled.p`
 `
 
 const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px;
   width: 100%;
   padding: 20px;
   background: rgba(255, 255, 255, 0.6);

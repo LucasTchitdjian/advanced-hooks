@@ -1,18 +1,17 @@
 import React from "react"
 import styled from "styled-components"
 
-function SectionRow() {
+function SectionRow(props) {
+  const { index, title, description, timestamp } = props
   return (
     <Wrapper>
-      <Index>1</Index>
+      <Index>{index}</Index>
       <TextWrapper>
-        <Title>Introduction to Visual Design</Title>
+        <Title>{title}</Title>
         <ProgressBar />
-        <Description>
-          Learn the foundations of UI design and start designing an app with me.
-        </Description>
+        <Description>{description}</Description>
       </TextWrapper>
-      <Timestamp>110:00</Timestamp>
+      <Timestamp>{timestamp}</Timestamp>
     </Wrapper>
   )
 }
