@@ -13,7 +13,7 @@ export const sections = [
   },
   {
     title: "React Component",
-    description: "Create your first JSX component using React",
+    description: "Create your first JSX component using React.",
     duration: "18:00",
   },
   {
