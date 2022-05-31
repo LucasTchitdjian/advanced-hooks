@@ -1,4 +1,5 @@
 import * as React from "react"
+import { graphql } from "gatsby"
 import styled from "styled-components"
 import { useWindowSize } from "react-use"
 import PurchaseButton from "../components/buttons/PurchaseButton"
@@ -6,19 +7,21 @@ import CourseCard from "../components/cards/CourseCard"
 import FlutterBuild from "../components/builds/FlutterBuild"
 import GridSection from "../components/sections/GridSection"
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
   const { width } = useWindowSize()
+  const title = data.allContentfulCourse.nodes[0].sections[0].title
+  const description = data.allContentfulCourse.nodes[0].sections[0].description
+
+  console.log(description)
   return (
     <Wrapper>
       <HeroWrapper>
         <CourseCard />
         <TextWrapper>
           <Logo src="/images/logos/react-logo.svg" alt="icon" />
-          <Title>Build a web app with React Hooks</Title>
+          <Title>{title}</Title>
           <Caption>20 sections - 3 hours of videos</Caption>
-          <Description>
-            Learn how we build the new design code site with React Hooks
-          </Description>
+          <Description>{description}</Description>
           <AuthorWrapper>
             <AuthorImage src="/images/avatars/Meng.png" alt="author" />
             <Caption>Taught by Meng To</Caption>
@@ -40,6 +43,21 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const query = graphql`
+  query IndexPageQuery {
+    allContentfulCourse {
+      nodes {
+        description
+        sections {
+          description
+          duration
+          title
+        }
+      }
+    }
+  }
+`
 
 const Wrapper = styled.div`
   background: linear-gradient(200.44deg, #4316db 13.57%, #9076e7 98.38%);
