@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import SectionRow from "../rows/SectionRow"
-import { sections } from "../../data/sectionData"
 
-function GridSection() {
+function GridSection(props) {
+  const { sections } = props
   return (
     <Wrapper>
       <Title>20 topics</Title>

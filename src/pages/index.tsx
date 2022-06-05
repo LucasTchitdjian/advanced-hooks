@@ -11,8 +11,8 @@ const IndexPage = ({ data }) => {
   const { width } = useWindowSize()
   const title = data.allContentfulCourse.nodes[0].sections[0].title
   const description = data.allContentfulCourse.nodes[0].sections[0].description
+  const sections = data.allContentfulCourse.nodes[0].sections
 
-  console.log(description)
   return (
     <Wrapper>
       <HeroWrapper>
@@ -34,7 +34,7 @@ const IndexPage = ({ data }) => {
         </TextWrapper>
       </HeroWrapper>
       <Divider />
-      <GridSection />
+      <GridSection sections={sections} />
       <FlutterWrapper width={width}>
         <FlutterBuild />
       </FlutterWrapper>
