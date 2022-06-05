@@ -3,7 +3,8 @@ import styled from "styled-components"
 
 import Circles from "../animations/Circles"
 
-function CourseCard() {
+function CourseCard(props) {
+  const { illustration } = props
   return (
     <Wrapper className="courseCard">
       <AnimationWrapper>
@@ -11,7 +12,7 @@ function CourseCard() {
       </AnimationWrapper>
 
       <Illustration
-        src="/images/illustrations/illustration-1.png"
+        src={"/images/illustrations/illustration-1.png"}
         alt="illustration"
       />
     </Wrapper>
